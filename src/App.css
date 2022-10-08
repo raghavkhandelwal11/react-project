@@ -1,0 +1,434 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+#brand-box {
+  margin-top: 30px;
+  font: normal normal bold 71px/87px Montserrat;
+}
+
+#rotate-text {
+  display: inline-block;
+  padding-left: 20px;
+  transform: rotate(270deg);
+  font-size: 30px;
+  font-weight: 550;
+}
+
+#nav {
+  display: flex;
+  flex-flow: row wrap;
+  padding: 20px 50px; 
+  justify-content: space-evenly;
+}
+
+hr {
+  border: 1px solid rgb(212, 209, 209);
+}
+
+
+/* #img1 {
+  height: 34.60vw;
+  width: 55vw;
+}
+
+#img2, #img3 {
+  height: 17vw;
+  width: 30vw;
+}
+
+#img1, #img2, #img3 {
+  border-radius: 5px;
+} */
+
+#vertical-gallery {
+  position: relative;
+  margin-top: 50px;
+  display: grid;
+  grid-template-columns: 6.5fr 3.5fr;
+  gap: 10px;
+  text-align: start;
+}
+
+#vertical-gallery-1 {
+  grid-row-start: 1;
+  grid-row-end: 3;
+  background-image: url(./components/resources/img1.jpeg);
+  height: 34.85vw;
+  background-size: cover;
+  border-radius: 6px;
+}
+
+#vertical-gallery-2 {
+  background-image: url(./components/resources/img2.jpeg);
+  height: 17vw;
+  background-size: cover;
+  border-radius: 6px;
+  
+}
+
+#vertical-gallery-3 {
+  background-image: url(./components/resources/img2.jpeg);
+  height: 17vw;
+  background-size: cover;
+  border-radius: 6px;
+}
+
+#vg1-1, #vg2-1, #vg3-1 {
+  position: relative;
+  color: white;
+  font-size: 2vw;
+  font-weight: 550;
+}
+
+#vg1-2, #vg2-2, #vg3-2 {
+  position: relative;
+  color: rgb(187, 182, 182);
+  font-size: 1vw;
+  
+}
+
+#vg1-1, #vg1-2 {
+  top: 55%;
+  left: 7%;
+}
+
+#vg2-1, #vg2-2, #vg3-1, #vg3-2 {
+  top: 25%;
+  left: 5%;
+  width: 80%;
+}
+
+.section-heading {
+  
+  margin-top: 90px;
+  margin-bottom: 80px;
+  text-align: left;
+}
+
+.section-h2 {
+  font-weight: 500;
+}
+
+.section-hr {
+  position: relative;
+  text-align: left;
+  width: 6%;
+  border-color: red;
+  top: -10px;
+}
+
+
+#latest-flex {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  text-align: left;
+}
+
+.latest-flex-item {
+  width: 30%;
+}
+
+.latest-image {
+  width: 100%;
+  height: 200px;
+  background-image: url(./components/resources/Temple.jpeg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-radius: 5px;
+}
+
+.latest-h3 {
+  padding-left: 7%;
+  padding-right: 7%;
+  
+  font-weight: 600;
+  font-size: 25px;
+}
+
+.latest-p {
+  position: relative;
+  padding-left: 7%;
+  padding-right: 7%;
+  color: rgb(146, 143, 143);
+  top: -3%;
+}
+
+.latest-last {
+  position: relative;
+  padding-left: 7%;
+  padding-right: 7%;
+  top: 5%;
+}
+
+.latest-last {
+  color: rgb(164, 163, 163)
+}
+
+.latest-last  span {
+  font-weight: 600;
+  color: black;
+}
+
+#article-flex {
+  width: 70%;
+  display: flex;
+  flex-flow: column wrap;
+  text-align: left;
+  
+}
+
+.article-flex-item {
+  width: 80%;
+  height: 300px;
+}
+
+.article-image {
+  width: 50%;
+  height: 200px;
+  background-image: url(./components/resources/Temple.jpeg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-radius: 5px;
+  float: left;
+  margin-right: 10%;
+  margin-top: 6%;
+}
+
+.article-h3 {
+  position: relative;
+  top: 2vw;
+  font-size: 1.4vw;
+}
+
+.article-p {
+  position: relative;
+  top: 2.5vw;
+  font-size: 1vw;
+  color: rgb(146, 143, 143);
+}
+
+.article-last {
+  position: relative;
+  top: 2.8vw;
+  color: rgb(164, 163, 163)
+}
+
+.article-last  span {
+  font-weight: 600;
+  color: black;
+}
+
+.extend {
+  width: 120%;
+}
+
+#button-load-more {
+  position: relative;
+  right: 47%;
+  top: 20px;
+  border: none;
+  background-color: white;
+}
+
+#button-load-more span {
+  position: relative;
+  top: 7px;
+  color: red;
+}
+
+#ad {
+  position: absolute;
+  top: 1643px;
+  width: 25%;
+  border: 1px solid black;
+  left: 67%;
+  height: 500px;
+  text-align: center;
+  font-weight: 600;
+
+}
+
+#top-posts {
+  padding: 1%;
+  position: absolute;
+  left: 66%;
+  top: 2200px;
+  width: 25%;
+  height: 950px;
+  
+  text-align: left;
+}
+
+#tp-img {
+  background-image: url(./components/resources/Temple.jpeg);
+  width: 96%;
+  height: 200px;
+  background-size: cover;
+
+}
+
+.posts-heading {
+  margin-bottom: 10%;
+}
+
+.posts-h2 {
+  width: 20vw;
+  font-weight: 500;
+}
+
+.posts-hr {
+  position: relative;
+  text-align: left;
+  width: 20%;
+  border-color: red;
+  top: -10px;
+}
+
+#posts-content {
+  width: 80%;
+}
+
+.fix-number {
+  position: relative;
+  font-size: 3vw;
+  font-weight: 600;
+  color: rgb(226, 222, 222);
+  left: 84%;
+  bottom: 55px;
+}
+
+#post-flex {
+  width: 80%;
+  display: flex;
+  flex-flow: column wrap;
+  text-align: left;
+}
+
+.post-flex-item {
+  width: 100%;
+  height: 150px;
+}
+
+.post-image {
+  
+  width: 40%;
+  height: 80px;
+  background-image: url(./components/resources/Temple.jpeg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-radius: 5px;
+  float: left;
+  margin-right: 5%;
+  margin-top: 6%;
+
+}
+
+.post-h3 {
+  position: relative;
+  top: 1vw;
+  font-size: 1vw;
+}
+
+.post-extend {
+  width: 120%;
+}
+
+.post-last {
+  position: relative;
+  top: 1vw;
+  font-size: 0.8vw;
+}
+
+.fix-number-post {
+  position: relative;
+  font-size: 3vw;
+  font-weight: 600;
+  color: rgb(226, 222, 222);
+  left: 60%;
+  bottom: 40px;
+}
+
+#carousel {
+  position: relative;
+  width: 67%;
+  top: 125px;
+}
+
+#img1 {
+  background-image: url(./components/resources/car11.jpeg);
+  background-repeat: no-repeat;
+}
+#img2 {
+  background-image: url(./components/resources/car_2.jpeg);
+}
+#img3 {
+  background-image: url(./components/resources/car3.jpeg);
+}
+
+#img1, #img2, #img3 {
+  width: 50%;
+  height: 400px;
+  background-size: cover;
+}
+
+.stories {
+  position: relative;
+  top: 130px;
+  
+}
+
+.stories-hr-head {
+  border-color: #818080;
+}
+
+.extra-hr {
+  border-right: 2px solid rgb(215, 215, 215);
+}
+
+
+
+
+a {
+  color: black;
+  text-decoration: none;
+}
+
+
+
