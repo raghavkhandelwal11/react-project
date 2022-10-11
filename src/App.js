@@ -8,6 +8,7 @@ import Hollywood from './components/nav/Hollywood';
 import Fitness from './components/nav/Fitness';
 import Food from './components/nav/Food';
 import Home from './components/nav/Home';
+import Post from './components/Post/Post';
 
 
 
@@ -21,6 +22,7 @@ function App() {
           <Route path="/hollywood" element={<Hollywood />}/>
           <Route path="/fitness" element={<Fitness />}/>
           <Route path="/food" element={<Food />}/>
+          <Route path="/post/:num" element={<Post />}/>
         </Routes>
           
     </div>

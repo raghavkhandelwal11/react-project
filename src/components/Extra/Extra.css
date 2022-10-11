@@ -1,0 +1,59 @@
+#adb {
+    position: absolute;
+    width: 26%;
+    height: 450px;
+    right: 6.8%;
+    bottom: -920px;
+    border: 1px solid black;
+}
+
+#top-posts-b {
+    padding: 1%;
+  position: absolute;
+  left: 66%;
+  top: 268px;
+  width: 25%;
+  height: 950px;
+  
+  text-align: left;
+}
+
+
+@media (min-width: 300px) and (max-width: 740px) {
+
+  #top-posts-b {
+    position: relative;
+    width: 100vw;
+    top: 150px;
+    left: -14%;
+  }
+
+  /* #top-posts-b > .posts-hr {
+    width: 50%;
+  } */
+
+  #adb {
+    display: none;
+  }
+
+  #brand-hr {
+    position: relative;
+    width: 100%;
+    right: 14%;
+  }
+
+  #waste {
+    display: none;
+  }
+  body {
+    position: relative;
+    right: 3%;
+    width: 60vw;
+  }
+
+  .extend {
+    position: relative;
+    right: 4%
+  }
+
+}

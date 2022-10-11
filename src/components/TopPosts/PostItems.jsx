@@ -1,20 +1,19 @@
+
 import { useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
- const LatestItem = (props) => {
+ const PostItem = (props) => {
     let [heading, updateContentHeading] = useState("");
-    let [context, updateContent] = useState("");
     let [category, updateContentCategory] = useState("");
     let [date, updateContentDate] = useState("");
     let [id1 , updateContentId] = useState("");
     let [img_url, updateImage] = useState("");
 
 
+
     axios.get('./database/MOCK_DATA.json').then((res) => {
         updateContentHeading(res.data[props.val].Heading);
-        updateContent(res.data[props.val].content);
-
         let cat = res.data[props.val].category;
         if(cat == 1) {
             updateContentCategory("Tech");
@@ -46,18 +45,21 @@ import { Link } from "react-router-dom";
     }
 
 
+
+
     return(
-        <div className="latest-flex-item" id={id1}>
+        <div className="post-flex-item" id={id1}>
             <Link to={`/post/${selectIndex(props.val)}`}>
-            <div className="latest-image"><img src={img_url} alt="" /></div>
-            <h3 className="latest-h3">{heading}</h3>
-            <p className="latest-p">{context}</p>
-            <p className="latest-last"><span>{category} /</span> {date}</p>
+            <hr className="post-extend"/>
+            <div className="post-image"><img src={img_url} alt="" /></div>
+            <h3 className="post-h3">{heading}</h3>
+            <p className="post-last"><span>{category} /</span> {date}</p>
+            <span className="fix-number-post">{props.count}</span>
             </Link>
         </div>
     );
 
 }
 
-export default LatestItem;
+export default PostItem;
 

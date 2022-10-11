@@ -1,9 +1,9 @@
-import PostItems from "./PostItems";
+import PostItems from "../../TopPosts/PostItems"
 import { useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
-const TopPosts = (props) => {
+const TopPostsB = (props) => {
 
     let [heading, updateContentHeading] = useState("");
     let [category, updateContentCategory] = useState("");
@@ -38,7 +38,7 @@ const TopPosts = (props) => {
     
 
     return(
-        <div id="top-posts">
+        <div id="top-posts-b">
 
                 <Link to={`/post/${props.start}`}>
                     <div className="posts-heading">
@@ -72,4 +72,4 @@ const TopPosts = (props) => {
     );
 }
 
-export default TopPosts;
+export default TopPostsB;
