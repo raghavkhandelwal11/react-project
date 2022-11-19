@@ -6,6 +6,8 @@ import { useParams } from "react-router-dom";
 
 import PostPageItems from "./PostPageItems";
 
+import { useEffect } from "react";
+
 const Post = (props) => {
     let [heading, updateHeading] = useState('');
     let [user_name, updateUser] = useState('');
@@ -14,16 +16,20 @@ const Post = (props) => {
     let [image_url, updateImage] = useState('');
     let {num} = useParams();
 
-    axios.get("/database/MOCK_DATA_TWO.json").then((res) => {
-        updateHeading(res.data[num].heading);
-        updateUser(res.data[num].user_name);
-        updateDate(res.data[num].date);
-        updateContent(res.data[num].content);
-    }).catch((error) => {console.log(error);})
+    useEffect(() => {
+        axios.get("/post/data").then((res) => { // /database/MOCK_DATA_TWO.json
+            updateHeading(res.data[num].heading);
+            updateUser(res.data[num].user_name);
+            updateDate(res.data[num].date);
+            updateContent(res.data[num].content);
+            console.log(res.data[num].user_name);
+        }).catch((error) => {console.log(error);})
 
-    axios.get("/database/Image_URL.json").then((res) => {
-        updateImage(res.data[num].download_url)
-    }).catch((err) => {console.log(err);});
+    
+        axios.get("/images").then((res) => {  // /database/Image_URL.json
+            updateImage(res.data[num].download_url)
+        }).catch((err) => {console.log(err);});
+    }, [num])
 
 
     const autoScroll = () => {

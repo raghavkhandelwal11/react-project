@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
@@ -11,7 +11,18 @@ import { Link } from "react-router-dom";
     let [img_url, updateImage] = useState("");
 
 
-    axios.get('./database/MOCK_DATA.json').then((res) => {
+    let selectIndex = (ind) => {
+        let ind1 = parseInt(ind)
+        if(ind1 > 105) {
+            return 100;
+        }
+
+        return ind1 + 7;
+    }
+
+
+    useEffect(() => {
+        axios.get('/post/items').then((res) => {
         updateContentHeading(res.data[props.val].Heading);
         updateContent(res.data[props.val].content);
 
@@ -32,20 +43,13 @@ import { Link } from "react-router-dom";
     })
 
 
-    axios.get("/database/Image_URL.json").then((res1) => {
+    axios.get("/images").then((res1) => {
         updateImage(res1.data[selectIndex(props.val)].download_url);
     }).catch((err) => {console.log(err);})
 
-    let selectIndex = (ind) => {
-        let ind1 = parseInt(ind)
-        if(ind1 > 105) {
-            return 100;
-        }
+    }, [props.val]);
 
-        return ind1 + 7;
-    }
-
-
+    
     return(
         <div className="latest-flex-item" id={id1}>
             <Link to={`/post/${selectIndex(props.val)}`}>

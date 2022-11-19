@@ -9,6 +9,7 @@ import Fitness from './components/nav/Fitness';
 import Food from './components/nav/Food';
 import Home from './components/nav/Home';
 import Post from './components/Post/Post';
+import Sports from './components/nav/Sports';
 
 
 
@@ -23,6 +24,7 @@ function App() {
           <Route path="/fitness" element={<Fitness />}/>
           <Route path="/food" element={<Food />}/>
           <Route path="/post/:num" element={<Post />}/>
+          <Route path="/sports" element={<Sports />}/>
         </Routes>
           
     </div>

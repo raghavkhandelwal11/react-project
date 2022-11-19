@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
@@ -14,28 +14,32 @@ const PostPageItems = (props) => {
         num = 110;
     }
 
-    axios.get('/database/MOCK_DATA.json').then((res) => {
-        updateContentHeading(res.data[num].Heading);
-        updateContent(res.data[num].content);
-        let cat = res.data[num].category;
-        if(cat == 1) {
-            updateContentCategory("Tech");
-        } else if(cat == 2) {
-            updateContentCategory("Style");
-        } else {
-            updateContentCategory("Bollywood");
-        }
-        
-        updateContentDate(res.data[num].date);
-       
 
-    }).catch((error) => {
-        console.log(error);
-    })
-
-    axios.get("/database/Image_URL.json").then((res1) => {
-        updateImage(res1.data[num].download_url);
-    }).catch((err) => {console.log(err);})
+    useEffect( () =>  {
+        axios.get('/post/items').then((res) => {   // /database/MOCK_DATA.json
+            updateContentHeading(res.data[num].Heading);
+            updateContent(res.data[num].content);
+            let cat = res.data[num].category;
+            if(cat == 1) {
+                updateContentCategory("Tech");
+            } else if(cat == 2) {
+                updateContentCategory("Style");
+            } else {
+                updateContentCategory("Bollywood");
+            }
+            
+            updateContentDate(res.data[num].date);
+           
+    
+        }).catch((error) => {
+            console.log(error);
+        })
+    
+        axios.get("/images").then((res1) => { ///database/Image_URL.json
+            updateImage(res1.data[num].download_url);
+        }).catch((err) => {console.log(err);})
+    
+    }, [num])
 
     return(
         <div className="footer-flex-item extra-hr">

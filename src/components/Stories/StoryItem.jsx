@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
@@ -7,9 +7,11 @@ const StoryItem = (props) => {
     let [content, updateContent] = useState('');
     let [category, updateContentCategory] = useState("");
     let [date, updateContentDate] = useState("");
-    
 
-    axios.get('./database/MOCK_DATA.json').then((res) => {
+
+
+    useEffect(() => {
+        axios.get('/post/items').then((res) => {
         updateContentHeading(res.data[props.val].Heading);
         updateContent(res.data[props.val].Heading);
         let cat = res.data[props.val].category;
@@ -24,11 +26,14 @@ const StoryItem = (props) => {
         updateContentDate(res.data[props.val].date);
        
 
-    }).catch((error) => {
-        console.log(error);
-    })
+        }).catch((error) => {
+            console.log(error);
+        })
 
 
+    }, [props.val])
+
+    
 
     return(
         <div className="latest-flex-item extra-hr">

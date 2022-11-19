@@ -1,5 +1,5 @@
 import PostItems from "./PostItems";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
@@ -12,28 +12,33 @@ const TopPosts = (props) => {
     let [img_url, updateImage] = useState("");
 
 
-
-    axios.get('./database/MOCK_DATA.json').then((res) => {
-        updateContentHeading(res.data[props.start].Heading);
-        let cat = res.data[props.start].category;
-        if(cat == 1) {
-            updateContentCategory("Tech");
-        } else if(cat == 2) {
-            updateContentCategory("Style");
-        } else {
-            updateContentCategory("Bollywood");
-        }
+    useEffect(() => {
+        axios.get('/post/items').then((res) => {
+            updateContentHeading(res.data[props.start].Heading);
+            let cat = res.data[props.start].category;
+            if(cat == 1) {
+                updateContentCategory("Tech");
+            } else if(cat == 2) {
+                updateContentCategory("Style");
+            } else {
+                updateContentCategory("Bollywood");
+            }
+            
+            updateContentDate(res.data[props.start].date);
+            updateContentId("l" + props.start);
+    
+        }).catch((error) => {
+            console.log(error);
+        })
+    
+        axios.get("/images").then((res1) => {
+            updateImage(res1.data[props.start].download_url);
+        }).catch((err) => {console.log(err);})
+    
         
-        updateContentDate(res.data[props.start].date);
-        updateContentId("l" + props.start);
+    }, [props.start])
 
-    }).catch((error) => {
-        console.log(error);
-    })
 
-    axios.get("/database/Image_URL.json").then((res1) => {
-        updateImage(res1.data[props.start].download_url);
-    }).catch((err) => {console.log(err);})
 
     
 

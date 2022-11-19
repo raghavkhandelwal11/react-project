@@ -54,6 +54,9 @@ const Home = (props) => {
                         <li className="nav-item">
                         <Link to="food">Food</Link>
                         </li>
+                        <li className="nav-item">
+                        <Link to="sports">Sports</Link>
+                        </li>
                     </ul>
                     </div>
                 </div>
@@ -69,6 +72,8 @@ const Home = (props) => {
                     <Link to="hollywood">Hollywood</Link>
                     <Link to="fitness">Fitness</Link>
                     <Link to="food">Food</Link>
+                    <Link to="sports">Sports</Link>
+                        
                     
                 </div>
             </div>

@@ -1,5 +1,5 @@
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
@@ -10,30 +10,6 @@ import { Link } from "react-router-dom";
     let [id1 , updateContentId] = useState("");
     let [img_url, updateImage] = useState("");
 
-
-
-    axios.get('./database/MOCK_DATA.json').then((res) => {
-        updateContentHeading(res.data[props.val].Heading);
-        let cat = res.data[props.val].category;
-        if(cat == 1) {
-            updateContentCategory("Tech");
-        } else if(cat == 2) {
-            updateContentCategory("Style");
-        } else {
-            updateContentCategory("Bollywood");
-        }
-        
-        updateContentDate(res.data[props.val].date);
-        updateContentId("l" + props.val);
-
-    }).catch((error) => {
-        console.log(error);
-    })
-
-
-    axios.get("/database/Image_URL.json").then((res1) => {
-        updateImage(res1.data[selectIndex(props.val)].download_url);
-    }).catch((err) => {console.log(err);})
 
     let selectIndex = (ind) => {
         let ind1 = parseInt(ind)
@@ -46,6 +22,34 @@ import { Link } from "react-router-dom";
 
 
 
+    useState(() => {
+
+        axios.get('/post/items').then((res) => {
+            updateContentHeading(res.data[props.val].Heading);
+            let cat = res.data[props.val].category;
+            if(cat == 1) {
+                updateContentCategory("Tech");
+            } else if(cat == 2) {
+                updateContentCategory("Style");
+            } else {
+                updateContentCategory("Bollywood");
+            }
+            
+            updateContentDate(res.data[props.val].date);
+            updateContentId("l" + props.val);
+    
+        }).catch((error) => {
+            console.log(error);
+        })
+    
+    
+        axios.get("/images").then((res1) => {
+            updateImage(res1.data[selectIndex(props.val)].download_url);
+        }).catch((err) => {console.log(err);})
+    
+
+    }, [props.val])
+   
 
     return(
         <div className="post-flex-item" id={id1}>
