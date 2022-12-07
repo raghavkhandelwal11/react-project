@@ -13,9 +13,9 @@ const Latest = () => {
         </div>
         
             <div id="latest-flex">
-                <LatestItem val={1}/>
-                <LatestItem val={2}/>
-                <LatestItem val={3}/>
+                <LatestItem val={62}/>
+                <LatestItem val={5}/>
+                <LatestItem val={22}/>
             </div>
  
         

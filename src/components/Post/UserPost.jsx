@@ -10,35 +10,33 @@ import { useEffect } from "react";
 
 import { useContext } from "react";
 
-import {d1, d2, d3} from "../../App";
+import {user, userPosts} from "../../App";
 
-const Post = (props) => {
+const UserPost = (props) => {
     let [heading, updateHeading] = useState('');
     let [user_name, updateUser] = useState('');
     let [date, updateDate] = useState('');
     let [content, updateContent] = useState('');
     let [image_url, updateImage] = useState('');
-    let {num} = useParams();
+    let arr = useContext(userPosts);
+    let u = useContext(user)
 
-    let data1 = useContext(d1);
-    
-    let data3 = useContext(d3);
 
     useEffect(() => {
-        if(data1.length != 0 && data3.length != 0) {
-            updateHeading(data1[num].heading);
-            updateUser(data1[num].user_name);
-            updateDate(data1[num].date);
-            updateContent(data1[num].content);
-            console.log(data1[num].user_name);
+        if(arr.length != 0) {
+            updateHeading(arr[arr.length-1].heading);
+            updateUser(u.user_name);
+            updateDate(arr[arr.length-1].date);
+            updateContent(arr[arr.length-1].content);
+            console.log(arr[arr.length-1].user_name);
         
     
        
-            updateImage(data3[num].download_url)
+            updateImage(arr[arr.length-1].img_url)
 
         }
         
-    }, [num, data1, data3]);
+    }, [arr.length]);
 
 
     const autoScroll = () => {
@@ -112,9 +110,9 @@ const Post = (props) => {
             <hr className="footer-hr-1"/>
             <div className="post-footer">
 
-                <PostPageItems val={parseInt(num) + 1}></PostPageItems>
-                <PostPageItems val={parseInt(num) + 2}></PostPageItems>
-                <PostPageItems val={parseInt(num) + 3}></PostPageItems>
+                <PostPageItems val={parseInt(20) + 1}></PostPageItems>
+                <PostPageItems val={parseInt(20) + 2}></PostPageItems>
+                <PostPageItems val={parseInt(20) + 3}></PostPageItems>
 
             </div>
         </div>
@@ -125,4 +123,4 @@ const Post = (props) => {
 }
 
 
-export default Post;
+export default UserPost;

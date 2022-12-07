@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+import {d1, d2, d3} from "../../App";
 
 const PostPageItems = (props) => {
     let num = props.val;
@@ -9,6 +11,9 @@ const PostPageItems = (props) => {
     let [category, updateContentCategory] = useState("");
     let [date, updateContentDate] = useState("");
     let [image_url, updateImage] = useState('');
+
+    let data2 = useContext(d2);
+    let data3 = useContext(d3);
     
     if(num > 105) {
         num = 110;
@@ -16,10 +21,11 @@ const PostPageItems = (props) => {
 
 
     useEffect( () =>  {
-        axios.get('/post/items').then((res) => {   // /database/MOCK_DATA.json
-            updateContentHeading(res.data[num].Heading);
-            updateContent(res.data[num].content);
-            let cat = res.data[num].category;
+        if(data2.length != 0 && data3.length != 0) {
+       
+            updateContentHeading(data2[num].Heading);
+            updateContent(data2[num].content);
+            let cat = data2[num].category;
             if(cat == 1) {
                 updateContentCategory("Tech");
             } else if(cat == 2) {
@@ -28,18 +34,17 @@ const PostPageItems = (props) => {
                 updateContentCategory("Bollywood");
             }
             
-            updateContentDate(res.data[num].date);
+            updateContentDate(data2[num].date);
            
     
-        }).catch((error) => {
-            console.log(error);
-        })
     
-        axios.get("/images").then((res1) => { ///database/Image_URL.json
-            updateImage(res1.data[num].download_url);
-        }).catch((err) => {console.log(err);})
+        
+            updateImage(data3[num].download_url);
+
+        }
+       
     
-    }, [num])
+    }, [num, data2, data3])
 
     return(
         <div className="footer-flex-item extra-hr">

@@ -313,7 +313,6 @@ hr {
 #tp-img {
   width: 96%;
   height: 200px;
-  background-size: cover;
 }
 
 #tp-img img {
@@ -1071,4 +1070,33 @@ a {
 }
 
 } 
+
+#profile {
+  padding: 4px 10px;
+  width: 80px;
+  font-weight: 600;
+  padding-top: 10px;
+  color: white;
+  border-radius: 5px;
+  transition: all 0.3s linear;
+  
+
+}
+
+
+
+
+
+#signup {
+  padding: 4px 10px;
+  width: 100px;
+  font-weight: 600;
+  padding-top: 10px;
+  color: white;
+  border-radius: 5px;
+  transition: all 0.3s linear;
+
+}
+
+
 

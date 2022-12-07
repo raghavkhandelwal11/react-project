@@ -7,9 +7,23 @@ import TopPostsB from "../Extra/topPostsB/TopPostB";
 import Carousel from '../Carousel/Carousel';
 import Stories from '../Stories/Stories';
 import StoriesContext from "../contexts/StoriesContext";
+import { userPosts } from "../../App";
+import { useContext, useEffect, useState } from "react";
+
 
 const Food = (props) => {
+    const [trigger, updateTrigger] = useState(false);
+    let arr = useContext(userPosts);
     let num = 80, s = 68;
+
+    useEffect(() => {
+        if(arr.length > 0) {
+            if(arr[arr.length-1].category == "Food") {
+                updateTrigger(true);
+            }
+        }
+    }, [arr.length]);
+     
     return (
         <div>
             <nav className="navbar navbar-expand-lg bg-light">
@@ -59,11 +73,11 @@ const Food = (props) => {
             <hr />
 
 
-            <Article heading="Food Articles" topArticles={[20, 21, 22]}/>
+            <Article trigger={trigger} heading="Food Articles" topArticles={[23, 28, 22]} cat="Food"/>
 
             <Advertisementb />
 
-            <TopPostsB start={s} items={[77, 78, 79]}/>
+            <TopPostsB start={s} items={[72, 78, 79]} cat="Food"/>
 
             <StoriesContext.Provider value={num}>
                 <Stories />

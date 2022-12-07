@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+import {d1, d2, d3} from "../../App";
 
 const StoryItem = (props) => {
     let [heading, updateContentHeading] = useState("");
@@ -8,30 +10,32 @@ const StoryItem = (props) => {
     let [category, updateContentCategory] = useState("");
     let [date, updateContentDate] = useState("");
 
+    let data2 = useContext(d2);
+
 
 
     useEffect(() => {
-        axios.get('/post/items').then((res) => {
-        updateContentHeading(res.data[props.val].Heading);
-        updateContent(res.data[props.val].Heading);
-        let cat = res.data[props.val].category;
-        if(cat == 1) {
-            updateContentCategory("Tech");
-        } else if(cat == 2) {
-            updateContentCategory("Style");
-        } else {
-            updateContentCategory("Bollywood");
+
+        if(data2.length != 0) {
+       
+            updateContentHeading(data2[props.val].Heading);
+            updateContent(data2[props.val].Heading);
+            let cat = data2[props.val].category;
+            if(cat == 1) {
+                updateContentCategory("Tech");
+            } else if(cat == 2) {
+                updateContentCategory("Style");
+            } else {
+                updateContentCategory("Bollywood");
+            }
+            
+            updateContentDate(data2[props.val].date);
+       
         }
         
-        updateContentDate(res.data[props.val].date);
-       
-
-        }).catch((error) => {
-            console.log(error);
-        })
 
 
-    }, [props.val])
+    }, [props.val, data2])
 
     
 

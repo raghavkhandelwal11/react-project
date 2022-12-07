@@ -7,9 +7,23 @@ import TopPostsB from "../Extra/topPostsB/TopPostB";
 import Carousel from '../Carousel/Carousel';
 import Stories from '../Stories/Stories';
 import StoriesContext from "../contexts/StoriesContext";
+import { userPosts } from "../../App";
+import { useContext, useEffect, useState } from "react";
+
 
 const Technology = (props) => {
+    const [trigger, updateTrigger] = useState(false);
+    let arr = useContext(userPosts);
     let num = 40, s = 39;
+
+    useEffect(() => {
+        if(arr.length > 0) {
+            if(arr[arr.length-1].category == "Technology") {
+                updateTrigger(true);
+            }
+        }
+    }, [arr.length]);
+
     return (
         <div>
             <nav className="navbar navbar-expand-lg bg-light">
@@ -59,11 +73,11 @@ const Technology = (props) => {
             <hr />
 
 
-            <Article heading="Tech Articles" topArticles={[11, 12, 13]}/>
+            <Article trigger={trigger} heading="Tech Articles" topArticles={[11, 18, 19]} cat="Technology"/>
 
             <Advertisementb />
 
-            <TopPostsB start={s} items={[87, 88, 89]}/>
+            <TopPostsB start={s} items={[87, 74, 75]} cat="Technology"/>
 
 
             <StoriesContext.Provider value={num}>

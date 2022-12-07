@@ -2,6 +2,9 @@ import PostItems from "../../TopPosts/PostItems"
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+import {d1, d2, d3} from "../../../App";
+
 
 const TopPostsB = (props) => {
 
@@ -11,32 +14,32 @@ const TopPostsB = (props) => {
     let [id1 , updateContentId] = useState("");
     let [img_url, updateImage] = useState("");
 
+    let data2 = useContext(d2);
+    let data3 = useContext(d3);
+
 
     useEffect(() => {
-        axios.get('/post/items').then((res) => {
-            updateContentHeading(res.data[props.start].Heading);
-            let cat = res.data[props.start].category;
-            if(cat == 1) {
-                updateContentCategory("Tech");
-            } else if(cat == 2) {
-                updateContentCategory("Style");
-            } else {
-                updateContentCategory("Bollywood");
-            }
+
+        if(data2.length != 0 && data3.length != 0) {
+        
+            updateContentHeading(data2[props.start].Heading);
+           
             
-            updateContentDate(res.data[props.start].date);
+            updateContentCategory(props.cat);
+
+            
+            updateContentDate(data2[props.start].date);
             updateContentId("l" + props.start);
     
-            }).catch((error) => {
-                console.log(error);
-            })
         
-            axios.get("/images").then((res1) => {
-                updateImage(res1.data[props.start].download_url);
-            }).catch((err) => {console.log(err);})
+            
+            updateImage(data3[23].download_url);
+
+        }
+           
     
 
-    }, [props.start])
+    }, [props.start, data2, data3])
 
 
     return(
@@ -50,7 +53,7 @@ const TopPostsB = (props) => {
                     </div>
 
                     <div>
-                        <div id="tp-img"><img src={img_url} alt="" /></div>
+                        <div id="tp-img"><img id="tp-img" src={img_url} alt="" /></div>
                         <div id="posts-content">
                             <h3 className="article-h3 ">{heading}</h3>
 
@@ -64,9 +67,9 @@ const TopPostsB = (props) => {
                 <div>
         <div id="post-flex">
 
-            <PostItems val={props.items[0]} count={2}/>
-            <PostItems val={props.items[1]} count={3}/>
-            <PostItems val={props.items[2]} count={4}/>
+            <PostItems val={props.items[0]} count={2} cat={props.cat}/>
+            <PostItems val={props.items[1]} count={3} cat={props.cat}/>
+            <PostItems val={props.items[2]} count={4} cat={props.cat}/>
         
         </div>
         </div>

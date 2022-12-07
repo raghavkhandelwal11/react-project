@@ -2,6 +2,8 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+import {d1, d2, d3} from "../../App";
 
  const PostItem = (props) => {
     let [heading, updateContentHeading] = useState("");
@@ -9,6 +11,9 @@ import { Link } from "react-router-dom";
     let [date, updateContentDate] = useState("");
     let [id1 , updateContentId] = useState("");
     let [img_url, updateImage] = useState("");
+
+    let data2 = useContext(d2);
+    let data3 = useContext(d3);
 
 
     let selectIndex = (ind) => {
@@ -24,31 +29,25 @@ import { Link } from "react-router-dom";
 
     useState(() => {
 
-        axios.get('/post/items').then((res) => {
-            updateContentHeading(res.data[props.val].Heading);
-            let cat = res.data[props.val].category;
-            if(cat == 1) {
-                updateContentCategory("Tech");
-            } else if(cat == 2) {
-                updateContentCategory("Style");
-            } else {
-                updateContentCategory("Bollywood");
-            }
+            if(data2.length != 0 && data3.length != 0) {
+            updateContentHeading(data2[props.val].Heading);
             
-            updateContentDate(res.data[props.val].date);
+            
+            updateContentCategory(props.cat);
+            
+            
+            updateContentDate(data2[props.val].date);
             updateContentId("l" + props.val);
     
-        }).catch((error) => {
-            console.log(error);
-        })
+        
     
     
-        axios.get("/images").then((res1) => {
-            updateImage(res1.data[selectIndex(props.val)].download_url);
-        }).catch((err) => {console.log(err);})
-    
+        
+            updateImage(data3[selectIndex(props.val)].download_url);
+       
+        }
 
-    }, [props.val])
+    }, [props.val, data2, data3])
    
 
     return(

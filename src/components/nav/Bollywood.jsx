@@ -7,9 +7,24 @@ import TopPostsB from "../Extra/topPostsB/TopPostB";
 import "../../App.css"
 import Stories from '../Stories/Stories';
 import StoriesContext from "../contexts/StoriesContext";
+import { userPosts } from "../../App";
+import { useContext, useEffect, useState } from "react";
+
+
 
 const BollyWood = (props) => {
     let num = 45, s = 29;
+    const [trigger, updateTrigger] = useState(false);
+    let arr = useContext(userPosts);
+
+    useEffect(() => {
+        if(arr.length > 0) {
+            if(arr[arr.length-1].category == "Bollywood") {
+                updateTrigger(true);
+            }
+        }
+    }, [arr.length]);
+
     
     return (
         <div>
@@ -60,11 +75,11 @@ const BollyWood = (props) => {
             <hr id="brand-hr"/>
 
 
-            <Article heading="Bollywood Articles" topArticles={[8, 9, 10]}/>
+            <Article trigger={trigger} heading="Bollywood Articles" topArticles={[20, 49, 45]} cat="Bollywood"/>
 
             <Advertisementb />
 
-            <TopPostsB start={s} items={[90, 91, 92]}/>
+            <TopPostsB start={s} items={[76, 25, 65]} cat="Bollywood"/>
 
            
 

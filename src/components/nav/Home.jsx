@@ -20,11 +20,23 @@ import Stories from '../Stories/Stories';
 
 import StoriesContext from "../contexts/StoriesContext";
 
+import { d1, d2, d3 } from '../../App';
+
+import { useContext, useState, useEffect } from 'react';
+
+
+import {user} from "../Profile/Login";
+
 
 const Home = (props) => {
     let num = 90;
     let s = 19;
+    let content = useContext(d1);
+    let posts = useContext(d2);
+    let images = useContext(d3);
 
+    
+    
     return (
         <div id="master">
 
@@ -52,10 +64,10 @@ const Home = (props) => {
                         <Link to="fitness">Fitness</Link>
                         </li>
                         <li className="nav-item">
-                        <Link to="food">Food</Link>
+                        <Link to="food">Posts</Link>
                         </li>
                         <li className="nav-item">
-                        <Link to="sports">Sports</Link>
+                        <Link to="/create">Post</Link>
                         </li>
                     </ul>
                     </div>
@@ -72,7 +84,9 @@ const Home = (props) => {
                     <Link to="hollywood">Hollywood</Link>
                     <Link to="fitness">Fitness</Link>
                     <Link to="food">Food</Link>
-                    <Link to="sports">Sports</Link>
+                    <Link to="/create">Post</Link>
+
+
                         
                     
                 </div>
@@ -90,11 +104,11 @@ const Home = (props) => {
 
         <Latest />  
          
-        <Article heading="Latest Articles" topArticles={[5, 6, 7]}/>
+        <Article heading="Latest Articles" topArticles={[10, 9, 12]}/>
 
         <Advertisement />
 
-        <TopPosts start={s} items={[94, 95, 96]}/>
+        <TopPosts start={s} items={[76, 25, 65]}/>
 
         <Carousel />
 
@@ -103,7 +117,17 @@ const Home = (props) => {
         </StoriesContext.Provider>
 
         </div>
-    )
+    );
+
+
+    
 }
+
+
+
+
+
+
+
 
 export default Home;

@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+import {d1, d2, d3} from "../../App";
 
  const LatestItem = (props) => {
     let [heading, updateContentHeading] = useState("");
@@ -9,6 +11,9 @@ import { Link } from "react-router-dom";
     let [date, updateContentDate] = useState("");
     let [id1 , updateContentId] = useState("");
     let [img_url, updateImage] = useState("");
+
+    let data1 = useContext(d2);
+    let data2 = useContext(d3);
 
 
     let selectIndex = (ind) => {
@@ -22,32 +27,33 @@ import { Link } from "react-router-dom";
 
 
     useEffect(() => {
-        axios.get('/post/items').then((res) => {
-        updateContentHeading(res.data[props.val].Heading);
-        updateContent(res.data[props.val].content);
 
-        let cat = res.data[props.val].category;
-        if(cat == 1) {
-            updateContentCategory("Tech");
-        } else if(cat == 2) {
-            updateContentCategory("Style");
-        } else {
-            updateContentCategory("Bollywood");
+        if(data1.length != 0 && data2.length != 0) {
+
+            updateContentHeading(data1[props.val].Heading);
+            updateContent(data1[props.val].content);
+
+            let cat = data1[props.val].category;
+            if(cat == 1) {
+                updateContentCategory("Tech");
+            } else if(cat == 2) {
+                updateContentCategory("Style");
+            } else {
+                updateContentCategory("Bollywood");
+            }
+            
+            updateContentDate(data1[props.val].date);
+            updateContentId("l" + props.val);
+
+
+        
+            updateImage(data2[selectIndex(props.val)].download_url);
+        
+
         }
         
-        updateContentDate(res.data[props.val].date);
-        updateContentId("l" + props.val);
-
-    }).catch((error) => {
-        console.log(error);
-    })
-
-
-    axios.get("/images").then((res1) => {
-        updateImage(res1.data[selectIndex(props.val)].download_url);
-    }).catch((err) => {console.log(err);})
-
-    }, [props.val]);
+        
+    }, [props.val, data1, data2]);
 
     
     return(
