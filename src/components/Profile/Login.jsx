@@ -37,7 +37,7 @@ const Login = (props) => {
     }}>
         <Brand/>
         <br /><br /><br /><br />
-        <form style={{textAlign: "left"}}  action="http://localhost:3000">
+        <form style={{textAlign: "left"}}  action="">
             <label style={{border: "1px solid black", backgroundColor: "lightgray", padding: "2px 5px"}} htmlFor="">Email</label>
             <input type="text" ref={email} name="" id="" />
             <br /> <br />

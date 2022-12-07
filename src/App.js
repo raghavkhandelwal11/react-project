@@ -52,14 +52,14 @@ function App() {
 
   useEffect(() => {
    
-    axios.get("http://localhost:3002/post/data")
+    axios.get("/post/data")
     .then((res) => {
       updateContent(res.data);
     })
     .catch((err) => {console.log(err, "error while fetching getting content data")});
 
 
-    axios.get("http://localhost:3002/post/items")
+    axios.get("/post/items")
     .then((res) => {
       updatePosts(res.data);
       
@@ -68,7 +68,7 @@ function App() {
     .catch((err) => {console.log(err, "error while fetching getting post data")});
 
 
-    axios.get("http://localhost:3002/images")
+    axios.get("/images")
     .then((res) => {
       updateImages(res.data) 
         
@@ -82,7 +82,7 @@ function App() {
 
   useEffect(() => {
     if(lu != undefined && lu.email != undefined) {
-      axios.post("http://localhost:3002/posts/get", {email: lu.email})
+      axios.post("/posts/get", {email: lu.email})
       .then((res) => {
         if(res.data != "request rejected") {
           updateLatestPosts(res.data);
@@ -97,7 +97,7 @@ function App() {
 
   const submit = (e, p) => {
     
-    axios.post("http://localhost:3002/user/login", {
+    axios.post("/user/login", {
       email: e,
       password: p
     }).then((res) => {

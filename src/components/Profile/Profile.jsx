@@ -24,7 +24,7 @@ const Profile = () => {
   const logout1 = async () => {
     if(JSON.stringify(dt) != "" && dt.notLogged == undefined) {
       
-        await axios.post("http://localhost:3002/ur/logout", {
+        await axios.post("/ur/logout", {
           user_id: dt._id.toString()
         }).then((res) => {
           if(res.data == "success") {

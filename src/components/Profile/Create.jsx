@@ -21,7 +21,7 @@ const Create = () => {
 
       if(JSON.stringify(loggedUser) != "" || loggedUser.notLogged != true) {
         
-        axios.post("http://localhost:3002/add/post", {
+        axios.post("/add/post", {
             email: loggedUser.email,
             heading: heading.current.value,
             discription: discription.current.value,

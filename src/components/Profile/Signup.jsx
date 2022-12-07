@@ -11,7 +11,7 @@ const Login = () => {
 
   const submit = (e) => {
     e.preventDefault();
-    axios.post("http://localhost:3002/signup/register", {
+    axios.post("/signup/register", {
       name: name1.current.value,
       user_name: uName1.current.value,
       email: email1.current.value,
