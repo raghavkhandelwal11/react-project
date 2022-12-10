@@ -51,7 +51,7 @@ import {d1, d2, d3} from "../../App";
         return  ind1 + 4;
     }
 
-    if(content.length > 130) {
+    if(content!= undefined && content.length > 130) {
         updateContent(content.substring(0, 130));
     }
 
